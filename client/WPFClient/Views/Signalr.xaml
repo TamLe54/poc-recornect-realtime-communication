@@ -54,7 +54,7 @@
             />
         </StackPanel>
 
-        <Grid Grid.Row="2" Visibility="Collapsed" x:Name="chatServicePart" Grid.ColumnSpan="2">
+        <Grid Grid.Row="2" x:Name="chatServicePart" Visibility="Collapsed" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="247*"/>
                 <ColumnDefinition Width="59*"/>
@@ -148,9 +148,6 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Text="Phu" FontWeight="Bold" Padding="10" Grid.Row="0"/>
-                                <Border Grid.Row="0" BorderBrush="#FFCBCBCB" BorderThickness="0 0 0 1"/>
-                                <TextBlock Text="Minh have a plan" Padding="10" Grid.Row="1" FontSize="13"/>
                             </Grid>
                         </Border>
                     </StackPanel>
