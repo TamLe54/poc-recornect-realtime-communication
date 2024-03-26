@@ -14,21 +14,20 @@ public class ChatHub : Hub
 
     public async Task JoinRoom(UserRoomConnection userConnection, bool status)
     {
-        Console.WriteLine($"{userConnection.User} and {userConnection.Room}");
-            await Groups.AddToGroupAsync(Context.ConnectionId, userConnection.Room!);
-            _connection[Context.ConnectionId] = userConnection;
-            await Clients.Group(userConnection.Room!)
-                .SendAsync("ReceiveMessage","JoinRoomNotification" ,$"{userConnection.User} has Joined the Group", userConnection.Room!, status, DateTime.Now);
-            await SendConnectedUser(userConnection.Room!);  
+        await Groups.AddToGroupAsync(Context.ConnectionId, userConnection.Room!);
+        _connection[Context.ConnectionId] = userConnection;
+        await Clients.Group(userConnection.Room!)
+            .SendAsync("ReceiveMessage", $"{userConnection.User}", "Has Joined the Group", userConnection.Room!, status);
+        await SendConnectedUser(userConnection.Room!);
     }
 
     public async Task SendMessage(string message, string receivedRoom, bool status)
     {
-            if (_connection.TryGetValue(Context.ConnectionId, out UserRoomConnection userRoomConnection))
-            {
-                await Clients.Group(userRoomConnection.Room!)
-                    .SendAsync("ReceiveMessage", userRoomConnection.User, message, receivedRoom, status, DateTime.Now);
-            }
+        if (_connection.TryGetValue(Context.ConnectionId, out UserRoomConnection userRoomConnection))
+        {
+            await Clients.Group(userRoomConnection.Room!)
+                .SendAsync("ReceiveMessage", userRoomConnection.User, message, receivedRoom, status);
+        }
 
         Console.WriteLine(message, userRoomConnection.User);
     }

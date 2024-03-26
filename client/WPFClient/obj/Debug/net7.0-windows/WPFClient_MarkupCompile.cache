@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\project\Recornect\poc-msg-protocol\signalr\WPFClient\obj\Debug\net7.0-windows\
+D:\poc-recornect-realtime-communication\client\WPFClient\obj\Debug\net7.0-windows\
 WPFClient
 none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
-D:\project\Recornect\poc-msg-protocol\signalr\WPFClient\App.xaml
-11407045341
+D:\poc-recornect-realtime-communication\client\WPFClient\App.xaml
+32053775589
 
-547201135
-215562671593
-MainWindow.xaml;
+7-524692424
+219-245092236
+MainWindow.xaml;Views\MQTT.xaml;Views\Signalr.xaml;
 
 False
 

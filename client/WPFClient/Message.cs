@@ -14,5 +14,7 @@ namespace WPFClient
         public string? MessageText { get; set; }
 
         public bool Status { get; set; }
+
+        public string? Qos { get; set; }
     }
 }

@@ -49,10 +49,6 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "dependencies": {
-            "M2Mqtt": {
-              "target": "Package",
-              "version": "[4.3.0, )"
-            },
             "MaterialDesignColors": {
               "target": "Package",
               "version": "[2.1.4, )"
