@@ -38,7 +38,7 @@
                             <TextBox 
                                 x:Name="clientIDInput"  
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                Text="mqtt_client_react03ca35"
+                                Text="mqtt_client_wpf03ca35"
                                 BorderBrush="#FFD9D9D9" 
                                 FontSize="14" 
                                 FontWeight="Normal"
@@ -54,7 +54,7 @@
                             <TextBox 
                                 x:Name="userNameInput"  
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                Text="mqtt_client_react"
+                                Text="mqtt_client_wpf"
                                 BorderBrush="#FFD9D9D9" 
                                 FontSize="14" 
                                 FontWeight="Normal"
@@ -70,7 +70,7 @@
                             <TextBox 
                                 x:Name="passwordInput"  
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                Text="mqtt_client_react"
+                                Text="mqtt_client_wpf"
                                 BorderBrush="#FFD9D9D9" 
                                 FontSize="14" 
                                 FontWeight="Normal"
