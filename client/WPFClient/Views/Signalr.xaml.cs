@@ -104,16 +104,6 @@ namespace WPFClient.Views
         {
             if (chatServicePart.Visibility == Visibility.Collapsed)
             {
-                userInput.IsReadOnly = true;
-                userInput.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD9D9D9"));
-                connectButton.Content = "Disconnect";
-                chatServicePart.Visibility = Visibility.Visible;
-                userName.Content = userInput.Text;
-
-                Console.WriteLine("--------WPFCLIENT-CONNECTION-NOTIFICATION--------");
-                Console.WriteLine($"{userInput.Text} have connected to Server");
-                Console.WriteLine("--------------------------------");
-
                 try
                 {
                     // Start the connection to the server
@@ -123,6 +113,22 @@ namespace WPFClient.Views
                 {
                     Console.WriteLine($"Connection failed!:{ex.Message}");
                     MessageBox.Show("Connection failed!");
+                }
+
+                // Handle UI Event for Connection
+                // Check if the user has connected to the server
+                if (connection.State == HubConnectionState.Connected)
+                {
+                    userInput.IsReadOnly = true;
+
+                    userInput.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD9D9D9"));
+                    connectButton.Content = "Disconnect";
+                    chatServicePart.Visibility = Visibility.Visible;
+                    userName.Content = userInput.Text;
+
+                    Console.WriteLine("--------WPFCLIENT-CONNECTION-NOTIFICATION--------");
+                    Console.WriteLine($"{userInput.Text} have connected to Server");
+                    Console.WriteLine("--------------------------------");
                 }
             }
             else

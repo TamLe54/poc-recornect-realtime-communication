@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,21 +45,28 @@ namespace WPFClient.Views
             // Subscribe to the MqttMsgPublishReceived event
             mqttClient.MqttMsgPublishReceived += MqttClient_MqttMsgPublishReceived;
 
-            clientIDInput.IsReadOnly = true;
-            clientIDInput.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD9D9D9"));
-            userNameInput.IsReadOnly = true;
-            userNameInput.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD9D9D9"));
-            passwordInput.IsReadOnly = true;
-            passwordInput.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD9D9D9"));
-
-            connectButton.IsEnabled = false;
-            disconnectButton.IsEnabled = true;
-
             string clientId = clientIDInput.Text;
             string userName = userNameInput.Text;
             string password = passwordInput.Text;
 
             await Task.Run(() => mqttClient.Connect(clientId, userName, password));
+
+            if (mqttClient.IsConnected)
+            {
+                clientIDInput.IsReadOnly = true;
+                clientIDInput.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD9D9D9"));
+                userNameInput.IsReadOnly = true;
+                userNameInput.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD9D9D9"));
+                passwordInput.IsReadOnly = true;
+                passwordInput.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD9D9D9"));
+
+                connectButton.IsEnabled = false;
+                disconnectButton.IsEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Not connected to the broker");
+            }
         }
 
         private async void disconnectButton_Click(object sender, RoutedEventArgs e)
@@ -205,7 +213,7 @@ namespace WPFClient.Views
             });
         }
 
-        private void messageComponent_Change ()
+        private void messageComponent_Change()
         {
             Dispatcher.Invoke(() =>
             {
@@ -267,11 +275,11 @@ namespace WPFClient.Views
 
             if (mqttClient.IsConnected)
             {
-                await Task.Run(() => mqttClient.Publish(topic, Encoding.UTF8.GetBytes(payload), qos, false));
+                await Task.Run(() => mqttClient.Publish(topic, Encoding.UTF8.GetBytes(payload), qos, retained));
             }
             else
             {
-                MessageBox.Show("Please connect to the broker first.");
+                MessageBox.Show("Not connected to the broker");
             }
         }
 
